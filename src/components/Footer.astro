@@ -1,22 +1,8 @@
 ---
-import siteInfo from "../data/site-info";
 import Subscribe from "./Subscribe.astro";
-
-const { socialLinks } = siteInfo;
 ---
 
 <footer>
-  <div class="content">
-    <div class="social">
-      {
-        Object.values(socialLinks).map(({ href, Icon, text }) => (
-          <a {href} title={text} target="_blank" rel="noopener">
-            <Icon size={28} />
-          </a>
-        ))
-      }
-    </div>
-  </div>
   <div class="content">
     <Subscribe />
   </div>
@@ -51,10 +37,5 @@ const { socialLinks } = siteInfo;
     + .content {
       margin-block-start: var(--space-xl);
     }
-  }
-
-  .social {
-    display: flex;
-    gap: var(--space-m);
   }
 </style>
