@@ -10,12 +10,6 @@ export const collections = {
       z.object({
         title: z.string(),
         description: z.string().optional(),
-        ogImage: z
-          .object({
-            image: image(),
-            alt: z.string(),
-          })
-          .optional(),
         annotation: z.custom<RoughAnnotationType>().optional(),
         color: z.custom<ThemeColor>().optional(),
       }),

@@ -10,7 +10,6 @@ interface Props {
   title: string;
   date?: Date;
   description?: string;
-  ogImage?: string;
   ogAlt?: string;
   annotation?: RoughAnnotationType;
   headings?: MarkdownHeading[];
@@ -20,7 +19,6 @@ const {
   title,
   date,
   description,
-  ogImage,
   ogAlt,
   annotation,
   headings,
@@ -30,7 +28,6 @@ const {
 <BaseLayout
   title={title}
   description={description && smartquotes(description)}
-  ogImage={ogImage}
   ogAlt={ogAlt}
 >
   <article

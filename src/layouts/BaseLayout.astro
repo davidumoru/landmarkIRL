@@ -10,7 +10,6 @@ import "../styles/global.css";
 export interface Props {
   title: string;
   description?: string;
-  ogImage?: string;
   ogAlt?: string;
   color?: ThemeColor;
 }
@@ -28,7 +27,6 @@ const randomColor = colors[Math.floor(Math.random() * colors.length)];
 const {
   title,
   description = siteInfo.description,
-  ogImage,
   ogAlt = title,
   color = randomColor,
 } = Astro.props;
@@ -36,13 +34,9 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = Astro.url.pathname === "/" ? title : `${title} · LandmarkIRL`;
 
-const rawPath = new URL(Astro.url.pathname, Astro.site).pathname.replace(
-  /\/*$/,
-  ""
-);
+const rawPath = Astro.url.pathname.replace(/\/*$/, "");
 const pagePath = rawPath === "" ? "/index" : rawPath;
-
-const ogImagePath = ogImage || `${Astro.site}og${pagePath}.png`;
+const ogImagePath = `${Astro.url.origin}/og${pagePath}.png`;
 ---
 
 <!doctype html>
