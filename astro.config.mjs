@@ -10,7 +10,7 @@ import postcssLogicalViewportUnits from "@csstools/postcss-logical-viewport-unit
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://landmarkirl.xyz",
+  site: "https://landmarkirl.com",
   integrations: [react()],
   prefetch: true,
   vite: {
@@ -33,7 +33,6 @@ export default defineConfig({
   redirects: {
     "/share": "/posts",
     "/donate": "https://buymeacoffee.com/theumoru",
-    "/guestook": "https://guestbook.landmarkirl.xyz",
-    "/webring": "https://webring.landmarkirl.xyz",
+    "/webring": "https://webring.landmarkirl.com",
   },
 });
