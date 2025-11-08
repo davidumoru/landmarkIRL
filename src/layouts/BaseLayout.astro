@@ -28,13 +28,21 @@ const randomColor = colors[Math.floor(Math.random() * colors.length)];
 const {
   title,
   description = siteInfo.description,
-  ogImage = siteInfo.image.src,
-  ogAlt = siteInfo.image.alt,
+  ogImage,
+  ogAlt = title,
   color = randomColor,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = Astro.url.pathname === "/" ? title : `${title} · LandmarkIRL`;
+
+const rawPath = new URL(Astro.url.pathname, Astro.site).pathname.replace(
+  /\/*$/,
+  ""
+);
+const pagePath = rawPath === "" ? "/index" : rawPath;
+
+const ogImagePath = ogImage || `${Astro.site}og${pagePath}.png`;
 ---
 
 <!doctype html>
@@ -59,13 +67,17 @@ const pageTitle = Astro.url.pathname === "/" ? title : `${title} · LandmarkIRL`
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={new URL(ogImage, Astro.url.origin)} />
+    <meta property="og:image" content={ogImagePath} />
     <meta property="og:image:alt" content={ogAlt} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="LandmarkIRL" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImagePath} />
+    <meta name="twitter:image:alt" content={ogAlt} />
     <link rel="manifest" href="/manifest.json" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{pageTitle}</title>
